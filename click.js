@@ -32,13 +32,27 @@ function getMPos(event,checkers,turn,selection){
 						console.log("made it to p1");
 							if(selection[1] == (cordxInt-1) && (selection[0] == (cordyInt+1) || selection[0] == (cordyInt-1) ) ){
 								forward = true;
-								jump = false;
-								console.log("here?");
+							}else if(selection[1] == (cordxInt-2) ){
+								if(selection[0] == (cordyInt+2) && checkers[cordxInt-1][cordyInt+1] != turn[0]){
+									checkers[cordxInt-1][cordyInt+1] = 0;
+									forward = true;
+								}else if(selection[0] == (cordyInt-2) && checkers[cordxInt-1][cordyInt-1] != turn[0] ){
+									checkers[cordxInt-1][cordyInt-1] = 0;
+									forward = true;
+								}
 							}    
 						}else{
 							if(selection[1] == (cordxInt+1) && (selection[0] == (cordyInt+1) || selection[0] == (cordyInt-1) ) ){
 								forward = true;
 								jump = false;
+							}else if(selection[1] == (cordxInt+2) ){
+								if(selection[0] == (cordyInt-2) && checkers[cordxInt+1][cordyInt-1] != turn[0]){
+									checkers[cordxInt+1][cordyInt-1] = 0;
+									forward = true;
+								}else if(selection[0] == (cordyInt+2) && checkers[cordxInt+1][cordyInt+1] != turn[0] ){
+									checkers[cordxInt+1][cordyInt+1] = 0;
+									forward = true;
+								}
 							}
 						}
 						console.log(forward);
