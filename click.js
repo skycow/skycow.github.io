@@ -90,6 +90,7 @@ function changeTurn(turn, color, height){
 }
 
 function toggleOpp(opp){
+
 	if(opp[0] == 1){
 		opp[0] = 0;
 		document.getElementById("oppTog").innerHTML = "Computer Off";    
@@ -98,3 +99,71 @@ function toggleOpp(opp){
 		document.getElementById("oppTog").innerHTML = "Computer On";
 	}
 }
+
+function compOpp(opp, turn, checkers, selection, height, color){
+	console.log("this is the ai");
+	if(opp[0] == 1 && turn[0] == 2){
+		console.log("this is inside the ai" + opp[0] +"-"+turn[0]);
+	setTimeout(timerFn(), 5000)
+	//select move
+	var valid = 5;	
+	while(valid>4){
+		console.log("loop1");
+		randRow = Math.floor(Math.random() * 7);
+		randCol = Math.floor(Math.random() * 7);
+		while(checkers[randRow][randCol] != 2){
+			console.log("loop2");
+			randRow = Math.floor(Math.random() * 7);
+			randCol = Math.floor(Math.random() * 7);
+		}
+
+		if(checkers[randRow-1][randCol-1] == 1 && checkers[randRow-2][randCol-2] == 0){
+			selection[0] = randCol;
+			selection[1] = randRow;
+			valid = 1;
+		}else if(checkers[randRow-1][randCol+1] == 1 && checkers[randRow-2][randCol+2] == 0){
+			selection[0] = randCol;
+			selection[1] = randRow;
+			valid = 2;
+		}else if(checkers[randRow-1][randCol-1] == 0){
+			selection[0] = randCol;
+			selection[1] = randRow;
+			valid = 3;
+		}else if(checkers[randRow-1][randCol+1] == 0){
+			selection[0] = randCol;
+			selection[1] = randRow;
+			valid = 4;
+		}
+
+
+	}
+	drawCheckers(checkers, selection,height, color);
+	console.log("valid: "+valid);
+	setTimeout(timerFn(), 10000)
+	//move
+	if(valid == 1){
+	checkers[randRow-2][randCol-2] = 2;
+	checkers[randRow-1][randCol-1] = 0;
+	checkers[randRow][randCol] = 0;
+	}else if(valid == 2){
+	checkers[randRow-2][randCol+2] = 2;
+	checkers[randRow-1][randCol+1] = 0;
+	checkers[randRow][randCol] = 0;
+	}else if(valid == 3){
+	checkers[randRow-1][randCol-1] = 2;
+	checkers[randRow][randCol] = 0;
+	}else if(valid == 4){
+	checkers[randRow-1][randCol+1] = 2;
+	checkers[randRow][randCol] = 0;
+	}
+	drawCheckers(checkers, selection,height, color);
+	setTimeout(timerFn(), 10000)
+	//change turn
+	turn[0] = 1;
+	//redraw
+	changeTurn(turn[0], color, height);
+	}
+}
+
+function timerFn(){}
+

@@ -15,7 +15,7 @@
     		var height = 500;
     		//var color = ['#ff0000', '#003366', '#ffffff';
     		var color = ['#000000', '#ff0000'];
-    		var opp = [1, 0];
+    		var opp = [0, 0];
 
     		function changeColor(color, color1, color2){
     			color[0] = color1;
@@ -29,7 +29,7 @@
     <table>
     <tr>
     <td>    
-    <canvas id="board" width = "500" height='500'  onclick = "getMPos(event, checkers, turn, selection, height,color);drawCheckers(checkers, selection, height, color);" style = "border:22px solid #ffbf00; " class = "board">
+    <canvas id="board" width = "500" height='500'  onclick = "getMPos(event, checkers, turn, selection, height,color);drawCheckers(checkers, selection, height, color); compOpp(opp, turn, checkers, selection, height, color);" style = "border:22px solid #ffbf00; " class = "board">
         <!-- border:1px solid #000000;"#ffbf00#7CCD7C-->
     </canvas>
     </td>
@@ -40,11 +40,11 @@
     </div>
     <h3>Themes:</h3>
     <div><button type="button" onclick ="changeColor(color, '#000000', '#ff0000'); drawBoard(height, color); drawCheckers(checkers, selection, height, color); changeTurn(turn[0], color, height);">Classic</button></div>
-    <div><button type="button" onclick ="changeColor(color, '#003366', '#ffffff'); drawBoard(height, color); drawCheckers(checkers, selection, height, color); changeTurn(turn[0], color, height);getMPos();">USU</button></div>
+    <div><button type="button" onclick ="changeColor(color, '#003366', '#ffffff'); drawBoard(height, color); drawCheckers(checkers, selection, height, color); changeTurn(turn[0], color, height);">USU</button></div>
     <div><button type="button" onclick ="changeColor(color, '#a1efb4', '#000000'); drawBoard(height, color); drawCheckers(checkers, selection, height, color); changeTurn(turn[0], color, height);">hackUstate</button></div>
     <div><button type="button" onclick ="changeColor(color, '#99ccff', '#ffffff'); drawBoard(height, color); drawCheckers(checkers, selection, height, color); changeTurn(turn[0], color, height);">DOMO</button></div>
     <div><button type="button" onclick ="changeColor(color, color[1], color[0]); drawBoard(height, color); drawCheckers(checkers, selection, height, color); changeTurn(turn[0], color, height);">Invert</button></div>
-    <div><button type="button" id = "oppTog" onclick ="toggleOpp(opp)">Computer On</button></div>
+    <div><button type="button" id = "oppTog" onclick ="toggleOpp(opp)">Computer Off</button></div>
     <div><button type="button" onclick ="location.reload(true)">New Game</button></div>
     </td>
     </tr>
