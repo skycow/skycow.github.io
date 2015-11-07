@@ -1,10 +1,9 @@
-function drawBoard(){
-    var height = 400; //window.innerHeight;
+function drawBoard(height, color){
     //document.getElementById('status').innerHTML = winSize();
     
     var c = document.getElementById("board");
     var ctx = c.getContext("2d");
-    ctx.fillStyle = "#FFFFFF";
+    ctx.fillStyle = color[1];
     ctx.beginPath();
     //ctx2.fillStyle = "#000000";
     

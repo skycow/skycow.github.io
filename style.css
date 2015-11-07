@@ -1,0 +1,18 @@
+button {
+	margin-bottom: 30px;
+	border-radius: 20px;
+	margin-left: 10px;
+	width: 100px;
+}
+button:hover {
+  color:#00f;
+}
+button:active {
+  color:#00f;
+}
+button:focus {
+  color:#00f;
+}
+td {
+	text-align: center;
+}

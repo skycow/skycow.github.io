@@ -1,12 +1,11 @@
-function drawCheckers(checkers, selection){
+function drawCheckers(checkers, selection,height, color){
     var checks;
-    
-    var height = 400; //window.innerHeight;
     //document.getElementById('status').innerHTML = winSize();
     ////////
     var c = document.getElementById("board");
+    c.style.background = color[0];
     var ctx = c.getContext("2d");
-    ctx.fillStyle = "#003366";
+    ctx.fillStyle = color[0];
     ctx.beginPath();
     //ctx2.fillStyle = "#000000";
     
@@ -39,15 +38,15 @@ function drawCheckers(checkers, selection){
             }else if(checkers[col][row] == 1){
                 //ctx.fillStyle = "#003366";
                 //ctx.fillStyle = "#000000";
-                ctx.fillStyle = "#ffffff";
+                ctx.fillStyle = color[1];
                 ctx.beginPath();
-                ctx.arc(height/16 + height/8*(row), height/16 + height/8*col, 20, 0, 2*Math.PI);    
+                ctx.arc(height/16 + height/8*(row), height/16 + height/8*col, 25, 0, 2*Math.PI);    
                 ctx.fill();
                 ctx.closePath();
                 if(selection[0] == row && selection[1] == col){
                     ctx.strokeStyle = "#ff0000";
                     ctx.beginPath();
-                    ctx.arc(height/16 + height/8*(row), height/16 + height/8*col, 20, 0, 2*Math.PI);
+                    ctx.arc(height/16 + height/8*(row), height/16 + height/8*col, 25, 0, 2*Math.PI);
                     ctx.stroke();
                     ctx.closePath();
                 }
@@ -56,12 +55,12 @@ function drawCheckers(checkers, selection){
                 if(selection[0] == row && selection[1] == col){
                     ctx.strokeStyle = "#ff0000";
                 }else{
-                    ctx.strokeStyle = "#ffffff"
+                    ctx.strokeStyle = color[1];
                 }
                 ctx.lineWidth = 3;
                 //ctx.fillStyle = "#003366";
                 ctx.beginPath();
-                ctx.arc(height/16 + height/8*(row), height/16 + height/8*col, 20, 0, 2*Math.PI);
+                ctx.arc(height/16 + height/8*(row), height/16 + height/8*col, 25, 0, 2*Math.PI);
                 ctx.stroke();
                 ctx.closePath();
                 //console.log("2");

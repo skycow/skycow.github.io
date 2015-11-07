@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Checkers</title>
+
+<link rel="stylesheet" type="text/css" href="style.css">
     
     <script src="drawBoard.js"></script>
     <script src="drawCheckers.js"></script>
@@ -10,16 +12,44 @@
     <script>var checkers = [[-2,1,-2,1,-2,1,-2,1],[1,-2,1,-2,1,-2,1,-2],[-2,1,-2,1,-2,1,-2,1],[0,-2,0,-2,0,-2,0,-2],[-2,0,-2,0,-2,0,-2,0],[2,-2,2,-2,2,-2,2,-2],[-2,2,-2,2,-2,2,-2,2],[2,-2,2,-2,2,-2,2,-2]];
     		var turn = [1, 0];
     		var selection = [-1,-1];
+    		var height = 500;
+    		//var color = ['#ff0000', '#003366', '#ffffff';
+    		var color = ['#000000', '#ff0000'];
+    		var opp = [1, 0];
+
+    		function changeColor(color, color1, color2){
+    			color[0] = color1;
+    			color[1] = color2; 
+    		}
     </script>
 </head>
 
-<body onload="drawBoard(); initializeCheckers(checkers);drawCheckers(checkers, selection); ">
-    <div>
-        
-    <canvas id="board" width = "400" height='400'  onclick = "getMPos(event, checkers, turn, selection);drawCheckers(checkers, selection);" style = "background-color:#003366; ">
-        <!-- border:1px solid #000000;"-->
+<body onload="drawBoard(height, color); drawCheckers(checkers, selection, height, color); changeTurn(turn[0], color, height);" style = "background-color:#a1efb4">
+    
+    <table>
+    <tr>
+    <td>    
+    <canvas id="board" width = "500" height='500'  onclick = "getMPos(event, checkers, turn, selection, height,color);drawCheckers(checkers, selection, height, color);" style = "border:22px solid #ffbf00; " class = "board">
+        <!-- border:1px solid #000000;"#ffbf00#7CCD7C-->
     </canvas>
+    </td>
+    <td style="vertical-align:25%">
+    <h3>Turn:</h3>
+    <div>
+    <canvas id="turn" width = "50" height = "50"></canvas>
     </div>
+    <h3>Themes:</h3>
+    <div><button type="button" onclick ="changeColor(color, '#000000', '#ff0000'); drawBoard(height, color); drawCheckers(checkers, selection, height, color); changeTurn(turn[0], color, height);">Classic</button></div>
+    <div><button type="button" onclick ="changeColor(color, '#003366', '#ffffff'); drawBoard(height, color); drawCheckers(checkers, selection, height, color); changeTurn(turn[0], color, height);getMPos();">USU</button></div>
+    <div><button type="button" onclick ="changeColor(color, '#a1efb4', '#000000'); drawBoard(height, color); drawCheckers(checkers, selection, height, color); changeTurn(turn[0], color, height);">hackUstate</button></div>
+    <div><button type="button" onclick ="changeColor(color, '#99ccff', '#ffffff'); drawBoard(height, color); drawCheckers(checkers, selection, height, color); changeTurn(turn[0], color, height);">DOMO</button></div>
+    <div><button type="button" onclick ="changeColor(color, color[1], color[0]); drawBoard(height, color); drawCheckers(checkers, selection, height, color); changeTurn(turn[0], color, height);">Invert</button></div>
+    <div><button type="button" id = "oppTog" onclick ="toggleOpp(opp)">Computer On</button></div>
+    <div><button type="button" onclick ="location.reload(true)">New Game</button></div>
+    </td>
+    </tr>
+    </table>
+    <div><h1 style = "margin-left: 20px; margin-top:0px;">Hacker Checkers!</h1></div>
     <div>
     <p id="status" style = "word-wrap: break-word; width:100px"></p>
     </div>
