@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Checkers</title>
+    <script type="text/javascript">
+        function winSize(){
+            return window.innerHeight;
+        }
+        function getMPos(event){
+            //var cord = c.getBoundingClientRect();
+            var cordx = event.clientX;
+            var cordy = event.clientY;
+            document.getElementById('status').innerHTML = cordx + " " + cordy;
+            //document.getElementById('status').innerHTML = "test";
+        }
+        function getMPos2(){
+            //var cord = getMouse();
+            //document.getElementById('status').innerHTML = cord.x + " " + cord.y;
+            document.getElementById('status').innerHTML = "test2";
+        }
+    </script>
+</head>
+
+<body>
+    <div>
+    <canvas id="board" width = "600" height='600' onclick = "getMPos(event)" style = "background-color:#000000;">
+    </canvas>
+    </div>
+    <div>
+    <p id="status"></p>
+    </div>
+    <script type="text/javascript">
+        
+        var height = 600; //window.innerHeight;
+        document.getElementById('status').innerHTML = winSize();
+        
+        var c = document.getElementById("board");
+        var ctx = c.getContext("2d");
+        ctx.fillStyle = "#FF0000";
+        for(col = 0; col < 8; col++){
+            for(row1 = 0; row1 < 8; row1+=2){
+                ctx.fillRect(height/4*col,height/8*row1,height/8,height/8);
+            }
+            for(row2 = 1; row2 < 8; row2+=2){
+                ctx.fillRect(height/8+height/4*col,height/8*row2,height/8,height/8);
+            }
+        }
+        
+        
+        //c.addEventListener("click", getMPos(event));
+        //c.addEventListener("click", getMPos2);
+        //while(1){}
+        
+        
+           
+       </script>  
+    
+</body>
+
+</html>
