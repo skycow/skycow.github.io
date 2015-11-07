@@ -3,59 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <title>Checkers</title>
-    <script type="text/javascript">
-        function winSize(){
-            return window.innerHeight;
-        }
-        function getMPos(event){
-            //var cord = c.getBoundingClientRect();
-            var cordx = event.clientX;
-            var cordy = event.clientY;
-            document.getElementById('status').innerHTML = cordx + " " + cordy;
-            //document.getElementById('status').innerHTML = "test";
-        }
-        function getMPos2(){
-            //var cord = getMouse();
-            //document.getElementById('status').innerHTML = cord.x + " " + cord.y;
-            document.getElementById('status').innerHTML = "test2";
-        }
+    
+    <script src="drawBoard.js"></script>
+    <script src="drawCheckers.js"></script>
+    <script src="click.js"></script>
+    <script>var checkers = [[-2,1,-2,1,-2,1,-2,1],[1,-2,1,-2,1,-2,1,-2],[-2,1,-2,1,-2,1,-2,1],[0,-2,0,-2,0,-2,0,-2],[-2,0,-2,0,-2,0,-2,0],[2,-2,2,-2,2,-2,2,-2],[-2,2,-2,2,-2,2,-2,2],[2,-2,2,-2,2,-2,2,-2]];
+    		var turn = [1, 0];
+    		var selection = [-1,-1];
     </script>
 </head>
 
-<body>
+<body onload="drawBoard(); initializeCheckers(checkers);drawCheckers(checkers, selection); ">
     <div>
-    <canvas id="board" width = "600" height='600' onclick = "getMPos(event)" style = "background-color:#000000;">
+        
+    <canvas id="board" width = "400" height='400'  onclick = "getMPos(event, checkers, turn, selection);drawCheckers(checkers, selection);" style = "background-color:#003366; ">
+        <!-- border:1px solid #000000;"-->
     </canvas>
     </div>
     <div>
-    <p id="status"></p>
+    <p id="status" style = "word-wrap: break-word; width:100px"></p>
     </div>
-    <script type="text/javascript">
-        
-        var height = 600; //window.innerHeight;
-        document.getElementById('status').innerHTML = winSize();
-        
-        var c = document.getElementById("board");
-        var ctx = c.getContext("2d");
-        ctx.fillStyle = "#FF0000";
-        for(col = 0; col < 8; col++){
-            for(row1 = 0; row1 < 8; row1+=2){
-                ctx.fillRect(height/4*col,height/8*row1,height/8,height/8);
-            }
-            for(row2 = 1; row2 < 8; row2+=2){
-                ctx.fillRect(height/8+height/4*col,height/8*row2,height/8,height/8);
-            }
-        }
-        
-        
-        //c.addEventListener("click", getMPos(event));
-        //c.addEventListener("click", getMPos2);
-        //while(1){}
-        
-        
-           
-       </script>  
-    
+    <script>//document.getElementById('status').innerHTML = checkers[0][0];</script>
 </body>
 
 </html>
